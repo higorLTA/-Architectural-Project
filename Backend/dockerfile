@@ -1,0 +1,15 @@
+FROM node:18
+
+# diretório da aplicação dentro do container
+WORKDIR /app
+
+# copiar package.json e instalar dependências
+COPY package*.json ./
+RUN npm install
+
+# copiar todo código
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
