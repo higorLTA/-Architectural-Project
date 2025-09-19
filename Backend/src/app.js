@@ -22,6 +22,10 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         try {
             await dataSource.authenticate();
             console.log("🟢 Conexão com o banco de dados estabelecida com sucesso!");
+
+            await dataSource.sync({ alter: true }) 
+            console.log("🟢 Tabelas sincronizadas com sucesso!");
+            
             connected = true;
         } catch (err) {
             console.log("⏳ Banco ainda não está pronto, tentando novamente em 3s...", err.message);
